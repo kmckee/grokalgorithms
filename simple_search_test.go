@@ -1,4 +1,4 @@
-package searchsim
+package grokalgorithms
 
 import "testing"
 
