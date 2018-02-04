@@ -5,18 +5,29 @@ package grokalgorithms
 // the slice to keep and which half to throw out.  log2 n is the worst
 // case.
 func BinaryChop(items []int, lookFor int) int {
-	low := 0
-	high := len(items) - 1
+	low, high := getRangeFromSlice(items)
 	for low <= high {
-		mid := int((low + high) / 2)
+		mid := getMedianIndex(low, high)
 		current := items[mid]
 		if lookFor == current {
 			return mid
-		} else if lookFor < current {
+		}
+
+		if lookFor < current {
 			high = mid - 1
 		} else {
 			low = mid + 1
 		}
 	}
 	return -1
+}
+
+func getRangeFromSlice(items []int) (low int, high int) {
+	low = 0
+	high = len(items) - 1
+	return
+}
+
+func getMedianIndex(min, max int) int {
+	return int((min + max) / 2)
 }
